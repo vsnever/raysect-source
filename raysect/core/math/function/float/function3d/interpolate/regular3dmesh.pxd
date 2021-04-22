@@ -29,6 +29,35 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# from .interpolator3dmesh import Interpolator3DMesh
-from .discrete3dmesh import Discrete3DMesh
-from .regular3dmesh import RegularCartesianMesh, RegularCylindricalMesh, PeriodicRegularCylindricalMesh
+cimport numpy as np
+from raysect.core.math.function.float.function3d cimport Function3D
+
+
+cdef class RegularCartesianMesh(Function3D):
+
+    cdef:
+        np.ndarray _data
+        double[:, :, ::1] _data_mv
+        double _xmin, _ymin, _zmin, _xmax, _ymax, _zmax, _dx, _dy, _dz
+        bint _limit
+        double _default_value
+
+    cdef double evaluate(self, double x, double y, double z) except? -1e999
+
+
+cdef class RegularCylindricalMesh(Function3D):
+
+    cdef:
+        np.ndarray _data
+        double[:, :, ::1] _data_mv
+        double _rmin, _phimin, _zmin, _rmax, _phimax, _zmax, _dr, _dphi, _dz
+        bint _limit
+        double _default_value
+
+    cdef double evaluate(self, double x, double y, double z) except? -1e999
+
+
+cdef class PeriodicRegularCylindricalMesh(RegularCylindricalMesh):
+
+    cdef double evaluate(self, double x, double y, double z) except? -1e999
+
