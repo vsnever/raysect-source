@@ -27,6 +27,5 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-from raysect.core.math.function.float.function3d.interpolate.discrete3dmesh import Discrete3DMesh
-from raysect.core.math.function.float.function3d.interpolate.regular3dmesh cimport Regular3DMesh, RegularCylindricalMesh, PeriodicRegularCylindricalMesh
+from raysect.core.math.function.vector3d.function3d.interpolate.regular3dmesh cimport Regular3DMesh  # , RegularCylindricalMesh, PeriodicRegularCylindricalMesh
 

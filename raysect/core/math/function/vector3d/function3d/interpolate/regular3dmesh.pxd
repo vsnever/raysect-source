@@ -1,3 +1,5 @@
+# cython: language_level=3
+
 # Copyright (c) 2014-2020, Dr Alex Meakins, Raysect Project
 # All rights reserved.
 #
@@ -27,6 +29,36 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-from raysect.core.math.function.float.function3d.interpolate.discrete3dmesh import Discrete3DMesh
-from raysect.core.math.function.float.function3d.interpolate.regular3dmesh cimport Regular3DMesh, RegularCylindricalMesh, PeriodicRegularCylindricalMesh
+cimport numpy as np
+from raysect.core cimport Vector3D
+from raysect.core.math.function.vector3d.function3d cimport Function3D
 
+
+cdef class RegularCartesianMesh(Function3D):
+
+    cdef:
+        np.ndarray _data
+        double[:, :, :, ::1] _data_mv
+        double _xmin, _ymin, _zmin, _xmax, _ymax, _zmax, _dx, _dy, _dz
+        bint _limit
+        Vector3D _default_value
+
+    cdef Vector3D evaluate(self, double x, double y, double z)
+
+
+# cdef class RegularCylindricalMesh(Function3D):
+#
+#    cdef:
+#        np.ndarray _data
+#        double[:, :, :, ::1] _data_mv
+#        double _rmin, _phimin, _zmin, _rmax, _phimax, _zmax, _dr, _dphi, _dz
+#        bint _limit
+#        Vector3D _default_value
+#
+#    cdef Vector3D evaluate(self, double x, double y, double z)
+#
+# 
+# cdef class PeriodicRegularCylindricalMesh(RegularCylindricalMesh):
+# 
+#    cdef Vector3D evaluate(self, double x, double y, double z)
+#

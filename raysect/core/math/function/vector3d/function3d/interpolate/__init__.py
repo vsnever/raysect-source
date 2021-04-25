@@ -1,3 +1,5 @@
+# cython: language_level=3
+
 # Copyright (c) 2014-2020, Dr Alex Meakins, Raysect Project
 # All rights reserved.
 #
@@ -27,6 +29,4 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-from raysect.core.math.function.float.function3d.interpolate.discrete3dmesh import Discrete3DMesh
-from raysect.core.math.function.float.function3d.interpolate.regular3dmesh cimport Regular3DMesh, RegularCylindricalMesh, PeriodicRegularCylindricalMesh
-
+from .regular3dmesh import RegularCartesianMesh  # , RegularCylindricalMesh, PeriodicRegularCylindricalMesh
