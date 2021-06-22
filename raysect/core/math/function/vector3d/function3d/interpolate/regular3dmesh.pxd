@@ -46,19 +46,19 @@ cdef class RegularCartesianMesh(Function3D):
     cdef Vector3D evaluate(self, double x, double y, double z)
 
 
-# cdef class RegularCylindricalMesh(Function3D):
-#
-#    cdef:
-#        np.ndarray _data
-#        double[:, :, :, ::1] _data_mv
-#        double _rmin, _phimin, _zmin, _rmax, _phimax, _zmax, _dr, _dphi, _dz
-#        bint _limit
-#        Vector3D _default_value
-#
-#    cdef Vector3D evaluate(self, double x, double y, double z)
-#
-# 
-# cdef class PeriodicRegularCylindricalMesh(RegularCylindricalMesh):
-# 
-#    cdef Vector3D evaluate(self, double x, double y, double z)
+cdef class RegularCylindricalMesh(Function3D):
+
+   cdef:
+       np.ndarray _data
+       double[:, :, :, ::1] _data_mv
+       double _rmin, _phimin, _zmin, _rmax, _phimax, _zmax, _dr, _dphi, _dz
+       bint _limit
+       Vector3D _default_value
+
+   cdef Vector3D evaluate(self, double x, double y, double z)
+
+
+cdef class PeriodicRegularCylindricalMesh(RegularCylindricalMesh):
+
+   cdef Vector3D evaluate(self, double x, double y, double z)
 #
